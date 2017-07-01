@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
         Racket racket;
         GameField gf;
         Random rnd = new Random();
-        double stepx=5;
+        double stepx=1;
         
         public Form1()
         {
@@ -40,16 +40,15 @@ namespace WindowsFormsApplication1
         {
             formCanva.Clear(this.BackColor);
             gf.Draw(ref formCanva);
+            ball.Check(gf.y1, gf.y2);
             ball.Move(stepx);
             ball.Draw(ref formCanva);
-            ball.Check(gf.y1, gf.y2);
             if (gf.x2 <= ball.x2 || gf.x1>=ball.x1)
             {
                 double k = (ball.y1 + ball.a * ball.x1);
                 ball.Trace(ball.x1, ball.y1, 0, k);
                 stepx = -stepx;
             }
-            button1.Text = "" + ball.x1 + " " + ball.y1;
 
         }
 
