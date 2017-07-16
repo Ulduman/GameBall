@@ -10,7 +10,7 @@ namespace GameObjects
     public class Figure
     {
         public double x1, y1, x2, y2, dy, dx;
-        public Color color;
+        
 
     }
 
@@ -25,7 +25,7 @@ namespace GameObjects
         }
         public void Draw(ref Graphics formCanva)
         {
-            formCanva.DrawRectangle(Pens.Black, (float)x1, (float)y1, (float)(x2 - x1), (float)(y2 - y1));
+            formCanva.DrawRectangle(Pens.Black, (float)x1, (float)y1, (float)(x2 - x1-1), (float)(y2 - y1));
         }
 
     }

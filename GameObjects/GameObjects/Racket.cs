@@ -11,27 +11,35 @@ namespace GameObjects
     {
         public void Move(int x)
         {
-            y1 = y1 + x;
-            y2 = y2 + x;
+            this.y1 = this.y1 + x;
+            this.y2 = this.y2 + x;
         }
 
-        public Racket(int x, int y, int z, int f, Color cl)
+        public Racket(double x, double y, double z, double f)
         {
             x1 = x;
             x2 = z;
             y1 = y;
             y2 = f;
-            color = cl;
+            dx = x2 - x1;
+            dy = y2 - y1;
         }
 
-        public bool CheckPoint(GameField gm)
+        public void CheckPoint(ref Ball ball, ref double stepx)
         {
-            if (y1 < gm.y1 || y2 > gm.y2)
+            if (((ball.x1<=this.x2 && ball.x1>=this.x1) || (ball.x2 <= this.x2 && ball.x2 >= this.x1)) && ((ball.y1+ball.dy/2)>=this.y1 && (ball.y1 + ball.dy / 2) <= this.y2) )
             {
-                return false;
-            }else{
-                return true;
+                stepx = -stepx;
+                double k = (ball.y1 + ball.a * ball.x1);
+                ball.Trace(ball.x1, ball.y1, 0, k);
             }
+        }
+
+        
+
+        public void Draw(ref Graphics formCanva)
+        {
+            formCanva.FillRectangle(Brushes.Black, (float)x1, (float)y1, (float)(dx), (float)(dy));
         }
 
     }
